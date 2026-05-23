@@ -1,1 +1,1 @@
-# product-card
+# product-card продуктовая карточка
