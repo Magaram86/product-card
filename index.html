@@ -10,7 +10,14 @@
   <main class="catalog">
     <div class="container catalog__container">
       <h1 class="title catalog__title">Выбери свой продукт</h1>
-      <ul class="products clear-list">
+      <div class="products__buttons">
+        <button id="change-color-products-cards-button">Сменить цвет карточек</button>
+        <button id="button-card-color-change">Сменить цвет карточки</button>
+        <button id="open-google">Открыть страницу Google.com</button>
+        <button id="output-console-log">Вывести сообшение в консоль лог</button>
+        <button id="toggle-color-button">Переключение цвета кнопки</button>
+      </div>
+      <ul class="products products-cards ">
         <li class="products__item card">
           <img src="images/moisturizing_mousse.png" alt="" class="card__image">
           <span class="card__category">для нормальной кожи</span>
@@ -121,5 +128,6 @@
       </ul>
     </div>
   </main>
+  <script src="main.js"></script>
 </body>
 </html>
