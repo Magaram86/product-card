@@ -30,7 +30,7 @@ body {
 .catalog__container {
   background-image: url("images/backgraund_dandelions.png");
   background-repeat: no-repeat;
-  background-position: 90px 0;
+  background-position: 87px -87px;
   padding-top: 220px;
 }
 
@@ -46,7 +46,33 @@ body {
   text-align: center;
 }
 
-.clear-list {
+.products__buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 25px;
+  padding-bottom: 20px;
+}
+
+.buttons {
+  height: 40px;
+  background-color: #F7F7FA;
+}
+
+
+#toggle-color-button {
+  background-color: #93afc2; 
+  color: rgb(27, 26, 26);
+  transition: background-color 0.3s ease;
+}
+
+
+#toggle-color-button.active {
+  background-color: #2ecc71; 
+}
+
+
+.products-cards {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -59,9 +85,9 @@ body {
 }
 
 .card__image {
-width: 290px;
-height: 245px;
-display: block;
+  width: 290px;
+  height: 245px;
+  display: block;
 }
 
 .card__category {
@@ -121,4 +147,3 @@ display: block;
 .products__item {
   width: 340px;
 }
-
