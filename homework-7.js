@@ -1,8 +1,8 @@
-const checkWeather = (city, temperature) => {
+const showWeather = (city, temperature) => {
   console.log(`Сейчас в ${city} температура + ${temperature} градусов по Цельсию`);
 };
 
-checkWeather("Казань", 25); 
+showWeather("Казань", 25); 
 
 
 const SPEED_OF_LIGHT = 299792458;
