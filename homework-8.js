@@ -23,14 +23,17 @@ const carDetails = {
 // Добавление владельца отдельной строкой
 carDetails.owner = userProfile;
 
-// Задание 5: Функция проверки и добавления свойства "maxSpeed"
-function checkAndAddMaxSpeed(carObject) {
-  if (!carObject.hasOwnProperty('maxSpeed')) {
-    carObject.maxSpeed = 220;
+// Задание 5: Исправленная функция проверки свойства "maxSpeed"
+function checkMaxSpeed(carObject) {
+  if (carObject.hasOwnProperty('maxSpeed')) {
+    return;
   }
+  carObject.maxSpeed = 220;
 }
 
-checkAndAddMaxSpeed(carDetails);
+// Вызов функции с правильным именем
+checkMaxSpeed(carDetails);
+
 
 // Задание 6: Функция вывода значения конкретного свойства объекта
 function displayPropertyValue(object, key) {
