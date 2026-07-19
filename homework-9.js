@@ -2,16 +2,58 @@ import { socialComments } from './comments.js';
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const filteredNumbers = numbers.filter(num => num >= 5);
-console.log("Задание 2:", filteredNumbers);
+console.log(filteredNumbers);
 
 const furniture = ['Стул', 'Стол', 'Диван', 'Шкаф', 'Кровать'];
 const hasItem = furniture.includes('Диван');
-console.log("Задание 3:", hasItem);
+console.log(hasItem);
 
 function reverseArray(arr) {
-		return [...arr].reverse();
+  return [...arr].reverse();
 }
 const reversedNumbers = reverseArray(numbers);
 const reversedFurniture = reverseArray(furniture);
-console.log("Задание 4 — Числа:", reversedNumbers);
-console.log("Задание 4 — Мебель:", reversedFurniture);
+console.log(reversedNumbers);
+console.log(reversedFurniture);
+
+const comEmails = socialComments.filter(comment => comment.email.includes('.com'));
+console.log(comEmails);
+
+const updatedPostIdComments = socialComments.map(comment => {
+  if (comment.id <= 5) {
+    return { ...comment, postId: 2 };
+  } else {
+    return { ...comment, postId: 1 };
+  }
+});
+console.log(updatedPostIdComments);
+
+const shortComments = updatedPostIdComments.map(comment => ({
+  id: comment.id,
+  name: comment.name
+}));
+console.log(shortComments);
+
+const validatedComments = updatedPostIdComments.map(comment => {
+  if (comment.body.length > 180) {
+    return { ...comment, isInvalid: true };
+  } else {
+    return { ...comment, isInvalid: false };
+  }
+});
+console.log(validatedComments);
+
+const emailsReduce = validatedComments.reduce((acc, comment) => {
+  acc.push(comment.email);
+  return acc;
+}, []);
+console.log(emailsReduce);
+
+const emailsMap = validatedComments.map(comment => comment.email);
+console.log(emailsMap);
+
+const stringToString = emailsReduce.toString();
+console.log(stringToString);
+
+const stringJoin = emailsReduce.join(', ');
+console.log(stringJoin);
