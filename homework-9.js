@@ -8,9 +8,7 @@ const furniture = ['Стул', 'Стол', 'Диван', 'Шкаф', 'Крова
 const hasItem = furniture.includes('Диван');
 console.log(hasItem);
 
-function reverseArray(arr) {
-  return [...arr].reverse();
-}
+const reverseArray = arr => [...arr].reverse();
 const reversedNumbers = reverseArray(numbers);
 const reversedFurniture = reverseArray(furniture);
 console.log(reversedNumbers);
@@ -19,13 +17,10 @@ console.log(reversedFurniture);
 const comEmails = socialComments.filter(comment => comment.email.includes('.com'));
 console.log(comEmails);
 
-const updatedPostIdComments = socialComments.map(comment => {
-  if (comment.id <= 5) {
-    return { ...comment, postId: 2 };
-  } else {
-    return { ...comment, postId: 1 };
-  }
-});
+const updatedPostIdComments = socialComments.map(comment => ({
+  ...comment,
+  postId: comment.id <= 5 ? 2 : 1
+}));
 console.log(updatedPostIdComments);
 
 const shortComments = updatedPostIdComments.map(comment => ({
@@ -34,13 +29,10 @@ const shortComments = updatedPostIdComments.map(comment => ({
 }));
 console.log(shortComments);
 
-const validatedComments = updatedPostIdComments.map(comment => {
-  if (comment.body.length > 180) {
-    return { ...comment, isInvalid: true };
-  } else {
-    return { ...comment, isInvalid: false };
-  }
-});
+const validatedComments = updatedPostIdComments.map(comment => ({
+  ...comment,
+  isInvalid: comment.body.length > 180
+}));
 console.log(validatedComments);
 
 const emailsReduce = validatedComments.reduce((acc, comment) => {
