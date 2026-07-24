@@ -1,42 +1,50 @@
 import { products } from './products.js';
 
 const createProductCard = (product) => {
-  const compositionHtml = product.composition
-    .map(item => `<li>${item}</li>`)
-    .join('');
+  const template = document.querySelector('#product-template');
+  if (!template) return null;
 
-  return `
-    <li class="products__item card" data-id="${product.id}">
-      <img src="./images/${product.img}" alt="${product.title}" class="card__img" />
-      <span class="card__category">для нормальной кожи</span>
-      <h2 class="card__name">${product.title}</h2>
-      <div class="card__description">
-        <p>${product.description}</p>
-      </div>
-      <div class="card__compaund compaund">
-        <span class="compaund__name">Состав: </span>
-        <ul class="compaund__list">
-          ${compositionHtml}
-        </ul>
-      </div>
-      <div class="card__price">
-        <b>Цена</b>
-        <span>${product.price} &#8381;</span>
-      </div>
-    </li>
-  `;
+  const cardClone = template.content.cloneNode(true);
+
+  cardClone.querySelector('.card__image').src = `/images/${product.img}`;
+  cardClone.querySelector('.card__image').alt = product.title;
+  cardClone.querySelector('.card__name').textContent = product.title;
+  cardClone.querySelector('.card__description p').textContent = product.description;
+  cardClone.querySelector('.card__price span').textContent = `${product.price} ₽`;
+
+  const compoundList = cardClone.querySelector('.compaund__list');
+  compoundList.innerHTML = '';
+
+  product.composition.forEach((item) => {
+    const itemLi = document.createElement('li');
+    itemLi.textContent = item;
+    compoundList.append(itemLi);
+  });
+
+  return cardClone;
 };
 
 const renderProducts = (productsArray) => {
   const container = document.querySelector('.products-cards'); 
   if (!container) return;
-  container.innerHTML = productsArray.map(product => createProductCard(product)).join('');
+  
+  container.innerHTML = ''; 
+  
+  productsArray.forEach((product) => {
+    const cardElement = createProductCard(product);
+    if (cardElement) {
+      container.append(cardElement);
+    }
+  });
 };
 
 const productsDescriptions = products.reduce((acc, product) => {
-  acc[product.title] = product.description;
+  acc.push({
+    title: product.title,
+    description: product.description
+  });
   return acc;
-}, {});
+}, []);
 
 console.log(productsDescriptions);
 
@@ -53,3 +61,4 @@ const initApp = () => {
 };
 
 initApp();
+
