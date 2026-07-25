@@ -6,7 +6,7 @@ const createProductCard = (product) => {
 
   const cardClone = template.content.cloneNode(true);
 
-  cardClone.querySelector('.card__image').src = `/images/${product.img}`;
+  cardClone.querySelector('.card__image').src = `./images/${product.img}.png`;
   cardClone.querySelector('.card__image').alt = product.title;
   cardClone.querySelector('.card__name').textContent = product.title;
   cardClone.querySelector('.card__description p').textContent = product.description;
