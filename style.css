@@ -59,18 +59,15 @@ body {
   background-color: #F7F7FA;
 }
 
-
 #toggle-color-button {
   background-color: #93afc2;
   color: rgb(27, 26, 26);
   transition: background-color 0.3s ease;
 }
 
-
 #toggle-color-button.active {
   background-color: #2ecc71;
 }
-
 
 .products-cards {
   list-style: none;
@@ -167,9 +164,6 @@ body {
   margin: 0 auto;
 }
 
-
-
-
 .footer__list {
   list-style: none;
   padding: 0;
@@ -238,11 +232,10 @@ body {
   outline-offset: 2px;
 }
 
-
 .social-links {
   display: flex;
   gap: 15px;
-  align-items: left;
+  align-items: center;
   padding: 20px;
 }
 
@@ -252,24 +245,18 @@ body {
   align-items: center;
   width: 44px;
   height: 44px;
-  color: #6c757d;
-  transition: color 0.3s ease, transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
-.icon-item svg {
+.icon-item img {
   width: 24px;
   height: 24px;
 }
 
 .icon-item.tg-link:hover,
-.icon-item.tg-link:focus {
-  color: #229ED9;
-  transform: translateY(-2px);
-}
-
+.icon-item.tg-link:focus,
 .icon-item.vk-link:hover,
 .icon-item.vk-link:focus {
-  color: #0077FF;
   transform: translateY(-2px);
 }
 
@@ -281,7 +268,6 @@ body {
   text-align: center;
 }
 
-
 .footer__block-title {
   max-width: 350px;
   width: 100%;
@@ -292,7 +278,6 @@ body {
   font-weight: 400;
   line-height: 100%;
 }
-
 
 .footer__input-group {
   display: flex;
@@ -306,11 +291,9 @@ body {
   transition: box-shadow 0.2s ease;
 }
 
-
 .footer__input-group:focus-within {
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
 }
-
 
 .footer__input {
   flex-grow: 1;
@@ -322,11 +305,9 @@ body {
   padding: 10px 0;
 }
 
-
 .footer__input::placeholder {
   color: #a0a0a0;
 }
-
 
 .footer__divider {
   width: 1px;
@@ -334,7 +315,6 @@ body {
   background-color: #e0e0e0;
   margin: 0 15px;
 }
-
 
 .footer__submit-btn {
   border: none;
@@ -348,32 +328,26 @@ body {
   transition: color 0.2s ease;
 }
 
-
 .footer__submit-btn:hover {
   color: #000000;
 }
-
 
 .footer__bottom-info {
   position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-
-
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 }
 
-
 .footer__line {
   width: 66px;
   height: 1px;
   background-color: #ffffff;
 }
-
 
 .footer__copyright {
   font-family: 'Montserrat', sans-serif;
@@ -384,7 +358,6 @@ body {
   white-space: nowrap;
   margin: 0;
 }
-
 
 .footer__links {
   display: flex;
