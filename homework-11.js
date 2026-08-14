@@ -1,47 +1,55 @@
-const openModalBtn = document.getElementById('open-modal-btn');
-const modalOverlay = document.getElementById('modal');
-const closeModalBtn = document.getElementById('close-modal-btn');
-const regForm = document.getElementById('reg-form');
+let user = null;
 
-let user;
-openModalBtn.addEventListener('click', () => {
-  modalOverlay.classList.add('modal-showed');
-});
+const openBtn = document.getElementById("open-modal-btn");
+const closeBtn = document.getElementById("close-modal-btn");
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".modal-overlay");
+const formRegister = document.getElementById("reg-form");
+const form = document.getElementById("reg-form");
 
-closeModalBtn.addEventListener('click', () => {
-  modalOverlay.classList.remove('modal-showed');
-});
-
-modalOverlay.addEventListener('click', (event) => {
-  if (event.target === modalOverlay) {
-    modalOverlay.classList.remove('modal-showed');
-  }
-});
-
-if (regForm) {
-  regForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const passwordInput = document.getElementById('reg-password');
-    const passwordConfirmInput = document.getElementById('reg-password-confirm');
-
-    if (!regForm.checkValidity() || passwordInput.value !== passwordConfirmInput.value) {
-      alert('Регистрация отклонена: форма заполнена неверно или пароли не совпадают!');
-      return;
-    }
-
-    const userData = {
-      name: document.getElementById('reg-name').value,
-      surname: document.getElementById('reg-surname').value,
-      birthDate: document.getElementById('reg-date').value,
-      login: document.getElementById('reg-login').value,
-      createdAt: new Date()
-    };
-
-    user = userData;
-    console.log('Пользователь успешно зарегистрирован:', user);
-    regForm.reset();
-    modalOverlay.classList.remove('modal-showed');
-  });
+function openModal() {
+  overlay.style.display = "flex";
+  modal.classList.add("modal-showed");
 }
 
+function closeModal() {
+  overlay.style.display = "none";
+  modal.classList.remove("modal-showed");
+  formRegister.reset();
+}
+
+openBtn.addEventListener("click", openModal);
+closeBtn.addEventListener("click", closeModal);
+
+overlay.addEventListener("click", (e) => {
+  if (e.target === overlay) closeModal();
+});
+
+formRegister.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const passwordInput = form.querySelector('input[name="password"]');
+  const confirmPasswordInput = form.querySelector('input[name="passwordConfirm"]');
+
+  if (passwordInput.value !== confirmPasswordInput.value) {
+    alert("Регистрация отклонена: пароли не совпадают!");
+    return;
+  }
+
+  if (!form.checkValidity()) {
+    alert("Регистрация отклонена: форма невалидна!");
+    return;
+  }
+
+  const formData = new FormData(form);
+  const userData = Object.fromEntries(formData.entries());
+
+  delete userData.passwordConfirm;
+
+  userData.createdOn = new Date();
+
+  user = userData;
+
+  console.log("Успешная регистрация:", user);
+  closeModal();
+});

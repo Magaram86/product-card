@@ -192,19 +192,19 @@
         </ul>
       </div>
     </div>
-    </div>
   </footer>
-  <div id="modal" class="modal-overlay">
+
+  <div id="modal" class="modal modal-overlay">
     <div class="modal-content">
       <button id="close-modal-btn" class="modal-close">&times;</button>
       <h2>Регистрация</h2>
       <form class="modal-form" id="reg-form">
-        <input type="text" id="reg-name" placeholder="Имя" required>
-        <input type="text" id="reg-surname" placeholder="Фамилия" required>
-        <input type="date" id="reg-date" placeholder="дд.мм.гггг" required>
-        <input type="text" id="reg-login" placeholder="Логин" required>
-        <input type="password" id="reg-password" placeholder="Пароль" required>
-        <input type="password" id="reg-password-confirm" placeholder="Повторите пароль" required>
+        <input type="text" id="reg-name" name="name" placeholder="Имя" required>
+        <input type="text" id="reg-surname" name="surname" placeholder="Фамилия" required>
+        <input type="date" id="reg-date" name="birthDate" placeholder="дд.мм.гггг" required>
+        <input type="text" id="reg-login" name="login" placeholder="Логин" required>
+        <input type="password" id="reg-password" name="password" placeholder="Пароль" required>
+        <input type="password" id="reg-password-confirm" name="passwordConfirm" placeholder="Повторите пароль" required>
         <button type="submit" class="submit-btn">Зарегистрироваться</button>
       </form>
     </div>
