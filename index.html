@@ -151,11 +151,70 @@
       </template>
     </div>
   </main>
+
+
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__brand">
+        <h2 class="footer__brand">Product Cards</h2>
+        <p class="footer__subtitle">У нас самые лучшие продукты для кожи!</p>
+        <button id="open-modal-btn">Регистрация</button>
+        <div class="social-links">
+          <a href="https://t.me" target="_blank" rel="noopener" class="icon-item tg-link" aria-label="Telegram">
+            <img src="images/icon-telegram.svg" alt="Telegram" width="24" height="24">
+          </a>
+          <a href="https://vk.com" target="_blank" rel="noopener" class="icon-item vk-link" aria-label="ВКонтакте">
+            <img src="images/icon-vk.svg" alt="ВКонтакте" width="24" height="24">
+          </a>
+        </div>
+      </div>
+      <div class="footer__subscribe">
+        <h3 class="footer__block-title">Подпишись на наши акции:</h3>
+        <form class="footer__form">
+          <div class="footer__input-group">
+            <input type="email" id="subscribe-email" placeholder="Введи Email..." required class="footer__input">
+            <div class="footer__divider"></div>
+            <button type="submit" id="subscribe-submit" class="footer__submit-btn">Подписаться</button>
+            <div class="footer__bottom-info">
+              <div class="footer__line"></div>
+              <p class="footer__copyright">www.product-cards.com@all right reserve</p>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="footer__links">
+        <h3 class="footer__block-title">Быстрые ссылки</h3>
+        <ul class="footer__list">
+          <li><a href="#" class="footer__link">Каталог</a></li>
+          <li><a href="#" class="footer__link">О нас</a></li>
+          <li><a href="#" class="footer__link">Доставка и оплата</a></li>
+          <li><a href="#" class="footer__link">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <div id="modal" class="modal modal-overlay">
+    <div class="modal-content">
+      <button id="close-modal-btn" class="modal-close">&times;</button>
+      <h2>Регистрация</h2>
+      <form class="modal-form" id="reg-form">
+        <input type="text" id="reg-name" name="name" placeholder="Имя" required>
+        <input type="text" id="reg-surname" name="surname" placeholder="Фамилия" required>
+        <input type="date" id="reg-date" name="birthDate" placeholder="дд.мм.гггг" required>
+        <input type="text" id="reg-login" name="login" placeholder="Логин" required>
+        <input type="password" id="reg-password" name="password" placeholder="Пароль" required>
+        <input type="password" id="reg-password-confirm" name="passwordConfirm" placeholder="Повторите пароль" required>
+        <button type="submit" class="submit-btn">Зарегистрироваться</button>
+      </form>
+    </div>
+  </div>
   <script src="main.js"></script>
   <script src="homework-7.js"></script>
   <script src="homework-8.js"></script>
   <script src="homework-9.js" type="module"></script>
   <script src="homework-10.js" type="module"></script>
+  <script src="homework-11.js" type="module"></script>
 </body>
 
 </html>
