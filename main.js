@@ -1,3 +1,11 @@
+import './homework-7.js';
+import './homework-8.js';
+import './homework-9.js';
+import './homework-10.js';
+import './homework-11.js';
+import Modal from './Modal.js';
+import Form from './Form.js';
+
 // покраска всех карточек
 const productCards = document.querySelectorAll('.card');
 const allChangeColorCardButton = document.querySelector('#change-color-products-cards-button');
@@ -23,7 +31,7 @@ changeColorCardButton.addEventListener('click', () => {
 
 const openGoogleButton = document.querySelector('#open-google');
 
-openGoogleButton.addEventListener('click',openGoogle);
+openGoogleButton.addEventListener('click', openGoogle);
 
 function openGoogle() {
   const answer = confirm('Вы действительно хотите открыть Google?');
@@ -43,7 +51,7 @@ const outputLogButton = document.querySelector('#output-console-log');
 outputLogButton.addEventListener('click', () => outputConsoleLog('Вывод сообщения'));
 
 function outputConsoleLog(message) {
-  alert(message); 
+  alert(message);
   console.log(message);
 }
 
@@ -63,3 +71,53 @@ const toggleColorButton = document.querySelector('#toggle-color-button')
 toggleColorButton.addEventListener('click', () => {
   toggleColorButton.classList.toggle('active');
 });
+
+class Product {
+  constructor(name, price) {
+    this.name = name;
+    this.price = price;
+  }
+
+  getProductInfo() {
+    return `Товар: ${this.name}, Цена: ${this.price} руб.`;
+  }
+}
+
+class BeautyProduct extends Product {
+  constructor(name, price, type) {
+    super(name, price);
+    this.type = type;
+  }
+
+  getFullInfo() {
+    return `${this.getProductInfo()} | Тип/Назначение: ${this.type}`;
+  }
+}
+
+const testMousse = new BeautyProduct('Увлажняющий мусс', 1200, 'Для чувствительной кожи');
+console.log(testMousse.getFullInfo());
+
+const regModal = new Modal('modal');
+const regForm = new Form('reg-form');
+
+const openButton = document.getElementById('open-modal-btn');
+
+if (openButton) {
+  openButton.addEventListener('click', () => {
+    regModal.open();
+  });
+}
+
+if (regForm.formElement) {
+  regForm.formElement.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (regForm.isValid()) {
+      console.log('Успешно! Данные:', regForm.getValues());
+      regForm.reset();
+      regModal.close();
+    } else {
+      console.log('Форма заполнена неверно!');
+    }
+  });
+}
