@@ -5,6 +5,9 @@ import './homework-10.js';
 import './homework-11.js';
 import Modal from './Modal.js';
 import Form from './Form.js';
+import Cafe from './Cafe.js';
+import { Coffee, Tea, Lemonade } from './Beverages.js';
+
 
 // покраска всех карточек
 const productCards = document.querySelectorAll('.card');
@@ -121,3 +124,15 @@ if (regForm.formElement) {
     }
   });
 }
+
+const myCafe = new Cafe("Coffee & Beauty", "ул. Пушкина, дом 10");
+
+const espresso = new Coffee("Эспрессо", "S", 150, 20, "Арабика", "Без молока");
+const greenTea = new Tea("Зеленый чай", "M", 180, 20, "Сенча");
+const berryLemonade = new Lemonade("Ягодный лимонад", "L", 250, 10, true);
+
+console.log(myCafe.getCafeInfo());
+
+myCafe.orderDrink(espresso);
+myCafe.orderDrink(greenTea);
+myCafe.orderDrink(berryLemonade);
