@@ -1,55 +1,81 @@
 let user = null;
 
+// ---- Ищем элементы по новым селекторам ----
 const openBtn = document.getElementById("open-modal-btn");
 const closeBtn = document.getElementById("close-modal-btn");
-const modal = document.querySelector(".modal");
-const overlay = document.querySelector(".modal-overlay");
+const modal = document.getElementById("modal");            // теперь по id
+const overlay = document.getElementById("overlay");       // оверлей теперь #overlay
 const formRegister = document.getElementById("reg-form");
-const form = document.getElementById("reg-form");
+
+// ---- Проверяем, что все элементы найдены ----
+if (!openBtn) console.warn('open-modal-btn не найден');
+if (!closeBtn) console.warn('close-modal-btn не найден');
+if (!modal) console.warn('modal не найден');
+if (!overlay) console.warn('overlay не найден');
+if (!formRegister) console.warn('reg-form не найден');
 
 function openModal() {
-  overlay.style.display = "flex";
-  modal.classList.add("modal-showed");
+  if (overlay) overlay.classList.add('overlay-showed');   // используем новый класс
+  if (modal) modal.classList.add('open');                 // используем новый класс
 }
 
 function closeModal() {
-  overlay.style.display = "none";
-  modal.classList.remove("modal-showed");
-  formRegister.reset();
+  if (overlay) overlay.classList.remove('overlay-showed');
+  if (modal) modal.classList.remove('open');
+  if (formRegister) formRegister.reset();
 }
 
-openBtn.addEventListener("click", openModal);
-closeBtn.addEventListener("click", closeModal);
+// ---- Вешаем слушатели только если элементы существуют ----
+if (openBtn) {
+  openBtn.addEventListener("click", openModal);
+} else {
+  console.warn('openBtn не найден, слушатель не добавлен');
+}
 
-overlay.addEventListener("click", (e) => {
-  if (e.target === overlay) closeModal();
-});
+if (closeBtn) {
+  closeBtn.addEventListener("click", closeModal);
+} else {
+  console.warn('closeBtn не найден, слушатель не добавлен');
+}
 
-formRegister.addEventListener("submit", (event) => {
-  event.preventDefault();
+if (overlay) {
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeModal();
+  });
+}
 
-  const passwordInput = form.querySelector('input[name="password"]');
-  const confirmPasswordInput = form.querySelector('input[name="passwordConfirm"]');
+if (formRegister) {
+  formRegister.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-  if (passwordInput.value !== confirmPasswordInput.value) {
-    alert("Регистрация отклонена: пароли не совпадают!");
-    return;
-  }
+    const passwordInput = formRegister.querySelector('input[name="password"]');
+    const confirmPasswordInput = formRegister.querySelector('input[name="passwordConfirm"]');
 
-  if (!form.checkValidity()) {
-    alert("Регистрация отклонена: форма невалидна!");
-    return;
-  }
+    if (!passwordInput || !confirmPasswordInput) {
+      alert("Ошибка: поля пароля не найдены");
+      return;
+    }
 
-  const formData = new FormData(form);
-  const userData = Object.fromEntries(formData.entries());
+    if (passwordInput.value !== confirmPasswordInput.value) {
+      alert("Регистрация отклонена: пароли не совпадают!");
+      return;
+    }
 
-  delete userData.passwordConfirm;
+    if (!formRegister.checkValidity()) {
+      alert("Регистрация отклонена: форма невалидна!");
+      return;
+    }
 
-  userData.createdOn = new Date();
+    const formData = new FormData(formRegister);
+    const userData = Object.fromEntries(formData.entries());
 
-  user = userData;
+    delete userData.passwordConfirm;
 
-  console.log("Успешная регистрация:", user);
-  closeModal();
-});
+    userData.createdOn = new Date();
+
+    user = userData;
+
+    console.log("Успешная регистрация:", user);
+    closeModal();
+  });
+}
