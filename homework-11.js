@@ -2,19 +2,18 @@ let user = null;
 
 const openBtn = document.getElementById("open-modal-btn");
 const closeBtn = document.getElementById("close-modal-btn");
-const modal = document.querySelector(".modal");
-const overlay = document.querySelector(".modal-overlay");
+const modal = document.getElementById("modal");
+const overlay = document.getElementById("overlay");
 const formRegister = document.getElementById("reg-form");
-const form = document.getElementById("reg-form");
 
 function openModal() {
-  overlay.style.display = "flex";
-  modal.classList.add("modal-showed");
+  overlay.classList.add('overlay-showed');
+  modal.classList.add('open');
 }
 
 function closeModal() {
-  overlay.style.display = "none";
-  modal.classList.remove("modal-showed");
+  overlay.classList.remove('overlay-showed');
+  modal.classList.remove('open');
   formRegister.reset();
 }
 
@@ -28,20 +27,20 @@ overlay.addEventListener("click", (e) => {
 formRegister.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const passwordInput = form.querySelector('input[name="password"]');
-  const confirmPasswordInput = form.querySelector('input[name="passwordConfirm"]');
+  const passwordInput = formRegister.querySelector('input[name="password"]');
+  const confirmPasswordInput = formRegister.querySelector('input[name="passwordConfirm"]');
 
   if (passwordInput.value !== confirmPasswordInput.value) {
     alert("Регистрация отклонена: пароли не совпадают!");
     return;
   }
 
-  if (!form.checkValidity()) {
+  if (!formRegister.checkValidity()) {
     alert("Регистрация отклонена: форма невалидна!");
     return;
   }
 
-  const formData = new FormData(form);
+  const formData = new FormData(formRegister);
   const userData = Object.fromEntries(formData.entries());
 
   delete userData.passwordConfirm;
