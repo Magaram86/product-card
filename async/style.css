@@ -1,0 +1,18 @@
+#loading {
+  text-align: center;
+}
+
+#app {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  width: 250px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+}
