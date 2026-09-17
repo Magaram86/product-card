@@ -13,9 +13,19 @@
   <button id="getAll">Получить все карточки</button>
 
   <p id="message"></p>
+
   <div id="app">
     <p id="loading">Данные загружаются</p>
   </div>
+
+  <template id="userTemplate">
+    <div class="card">
+      <h2 class="userName"></h2>
+      <p class="userEmail"></p>
+      <p class="userAge"></p>
+      <button class="deleteButton">Удалить</button>
+    </div>
+  </template>
 
   <script src="async.js"></script>
 </body>

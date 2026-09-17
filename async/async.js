@@ -2,24 +2,20 @@ const app = document.getElementById('app');
 const message = document.getElementById('message');
 const deleteAll = document.getElementById('deleteAll');
 const getAll = document.getElementById('getAll');
+const template = document.getElementById('userTemplate');
 
 function renderUsers(usersArray) {
   app.innerHTML = '';
   message.textContent = '';
 
   usersArray.forEach(user => {
-    const card = document.createElement('div');
-    card.classList.add('card');
+    const card = template.content.cloneNode(true);
 
-    card.innerHTML = `
-      <h2>${user.name} ${user.surname}</h2>
-      <p>Email: ${user.email}</p>
-      <p>Возраст: ${user.age}</p>
-    `;
+    card.querySelector('.userName').textContent = `${user.name} ${user.surname}`;
+    card.querySelector('.userEmail').textContent = `Email: ${user.email}`;
+    card.querySelector('.userAge').textContent = `Возраст: ${user.age}`;
 
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Удалить';
-    card.append(deleteButton);
+    const deleteButton = card.querySelector('.deleteButton');
 
     deleteButton.addEventListener('click', () => {
       const currentUsers = localStorage.getItem('users');
@@ -27,7 +23,9 @@ function renderUsers(usersArray) {
       const newUsers = data.users.filter(item => item.id !== user.id);
 
       localStorage.setItem('users', JSON.stringify({ users: newUsers }));
-      card.remove();
+
+      const cardElement = deleteButton.closest('.card');
+      cardElement.remove();
     });
 
     app.append(card);
@@ -73,6 +71,7 @@ if (users === null) {
       if (!response.ok) {
         throw new Error('Ошибка при загрузке данных');
       }
+
       return response.json();
     })
     .then(data => {
